@@ -8,6 +8,8 @@ A semi-declarative interface for easily defining video formats using MoviePy, an
 - Google Custom Search API for automatically retrieving images.
   It is currently designed towards automatically creating short, educational wildlife videos aimed towards children.
 
+Examples of videos generated using VideoBuilder can be found on [this channel](https://www.youtube.com/channel/UCtbW78gAVAoHKlgfZ8oCamg)
+
 ## Quickstart Guide
 
 1. Clone the project and cd into the project directory:
