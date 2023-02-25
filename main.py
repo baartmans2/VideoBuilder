@@ -12,8 +12,8 @@ args = sys.argv
 # args[3]: Primary Animal (Or Winner)
 # args[4+]: Secondary Animals
 
-VALID_VIDEO_TYPES = ['vs', 'facts']
-VALID_ACTIONS = ['images', 'script', 'audio', 'video', 'auto']
+VALID_VIDEO_TYPES = ['-vs', '-facts']
+VALID_ACTIONS = ['-images', '-script', '-audio', '-video', '-auto']
 
 
 def validate_args(type: str, action: str, animals: List[str]) -> bool:
