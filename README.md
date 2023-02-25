@@ -42,7 +42,7 @@ python3 main.py [video-type] [action-type] [primary animal] [animal 1] [animal 2
 - `-script` :generates a script file for the video)
 - `-audio` :requires an existing script, downloads generates and downloads audio for the video's narration)
 - `-video` :generates a script file for the video).
-- `-auto` : does all of the previous four actions.
+- `-auto` : does all of the previous four actions. NOTE: This command is currently highly susceptible to error: Google Images sometimes provides images that are unreadable by the program. The text and voice generation is also susceptible to generation and pronunciation errors from time to time. It is better to run one command for each step, and then verify that each step worked properly, as well as edit the script, provide custom images, etc.
 
 `primary animal`: For versus videos, the name of the winning animal of the fight. For facts videos, the animal the video is about. Must match a listed animal in the file `animals.csv` .
 
