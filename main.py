@@ -12,6 +12,7 @@ args = sys.argv
 # args[3]: Primary Animal (Or Winner)
 # args[4+]: Secondary Animals
 
+print(args)
 VALID_VIDEO_TYPES = ['-vs', '-facts']
 VALID_ACTIONS = ['-images', '-script', '-audio', '-video', '-auto']
 
@@ -56,23 +57,23 @@ if validate_args(args[1], args[2], args[3:]):
     script_type = None
     animals = []
     primary_animal = animal.get_animal(args[3])
-    if args[1] == "vs":
+    if args[1] == VALID_VIDEO_TYPES[0]:
         script_type = script.ScriptType.VERSUS
         for arg in args[4:]:
             animals.append(animal.get_animal(arg))
-    elif args[1] == "facts":
+    elif args[1] == VALID_VIDEO_TYPES[1]:
         script_type = script.ScriptType.FIVE_FACTS
         animals.append(primary_animal)
 
-    if args[2] == "script":
-        gen_script(script_type, animals, primary_animal)
-    elif args[2] == "audio":
-        gen_audio(script_type, animals)
-    elif args[2] == "video":
-        gen_video(script_type, animals, primary_animal)
-    elif args[2] == "images":
+    if args[2] == VALID_ACTIONS[0]:
         images.download_images(animals)
-    elif args[2] == "auto":
+    elif args[2] == VALID_ACTIONS[1]:
+        gen_script(script_type, animals, primary_animal)
+    elif args[2] == VALID_ACTIONS[2]:
+        gen_audio(script_type, animals)
+    elif args[2] == VALID_ACTIONS[3]:
+        gen_video(script_type, animals, primary_animal)
+    elif args[2] == VALID_ACTIONS[4]:
         # get images
         images.download_images(animals)
         # make script
