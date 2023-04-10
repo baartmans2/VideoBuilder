@@ -79,35 +79,37 @@ class ClipFormat:
         path_counter = 0
         # get the assets from paths according to number of assets needed for clip and turn into a array of clips with calculated height and width
         for i in range(self.assets):
-            clip = None
-            if self.path_override is None:
-                if self.style == ClipStyle.IMAGE:
-                    clip = ImageClip(paths[path_counter])
-                elif self.style == ClipStyle.VIDEO:
-                    clip = VideoClip(paths[path_counter])
-            else:
-                if self.style == ClipStyle.IMAGE:
-                    clip = ImageClip(self.path_override)
-                elif self.style == ClipStyle.VIDEO:
-                    clip = VideoClip(self.path_override)
+            try:
+                clip = None
+                if self.path_override is None:
+                    if self.style == ClipStyle.IMAGE:
+                        clip = ImageClip(paths[path_counter])
+                    elif self.style == ClipStyle.VIDEO:
+                        clip = VideoClip(paths[path_counter])
+                else:
+                    if self.style == ClipStyle.IMAGE:
+                        clip = ImageClip(self.path_override)
+                    elif self.style == ClipStyle.VIDEO:
+                        clip = VideoClip(self.path_override)
 
-            # resize
-            clip = clip.resize(height=video_height)
-            (w, h) = clip.size
+                # resize
+                clip = clip.resize(height=video_height)
+                (w, h) = clip.size
 
-            # resize clip according to specified size
-            if self.size == ClipSize.VERTICALSPLITSCREEN:
-                clip = clip.fx(vfx.crop, x_center=w/2, y_center=h/2,
-                               width=video_width, height=video_height / self.assets)
-            elif self.size == ClipSize.FULLSCREEN:
-                clip = clip.fx(vfx.crop, x_center=w/2, y_center=h/2,
-                               width=video_width, height=video_height)
-            elif self.size == ClipSize.HORIZONTALSPLITSCREEN:
-                clip = clip.fx(vfx.crop, x_center=w/2, y_center=h/2,
-                               width=video_width / self.assets, height=video_height)
+                # resize clip according to specified size
+                if self.size == ClipSize.VERTICALSPLITSCREEN:
+                    clip = clip.fx(vfx.crop, x_center=w/2, y_center=h/2,
+                                   width=video_width, height=video_height / self.assets)
+                elif self.size == ClipSize.FULLSCREEN:
+                    clip = clip.fx(vfx.crop, x_center=w/2, y_center=h/2,
+                                   width=video_width, height=video_height)
+                elif self.size == ClipSize.HORIZONTALSPLITSCREEN:
+                    clip = clip.fx(vfx.crop, x_center=w/2, y_center=h/2,
+                                   width=video_width / self.assets, height=video_height)
 
-            clips.append(clip)
-
+                clips.append(clip)
+            except:
+                print("Unable to open" + paths[path_counter] + ".")
             # increment path counter to grab next asset supplied. if not enough were supplied, begin to reuse assets.
             path_counter += 1
             if path_counter > (self.assets - 1):

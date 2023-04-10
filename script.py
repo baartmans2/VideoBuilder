@@ -17,7 +17,6 @@ ELEVENLABS_API_KEY = str(os.environ.get("ELEVENLABS_API_KEY"))
 TTS_USER = ElevenLabsUser(ELEVENLABS_API_KEY)
 TTS_VOICE = TTS_USER.get_voices_by_name("Antoni")[0]
 
-
 FACTS_PROMPT = '''\
 Write a script for a short narrated video called "Five Facts You Didn't Know About the {animal_name}. The format requirements for the script are as follows:
 Line 1 format: "Five Facts You Didn't Know About the {animal_name}"
